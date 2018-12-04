@@ -46,7 +46,7 @@ The following queries were submitted to the pokemon database:
 <?php
 print $query;
 print "\n";
-print query2;
+print $query2;
 ?>
 
 <hr>
