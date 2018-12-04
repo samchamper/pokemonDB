@@ -57,8 +57,13 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
     print "\n";
 	print "'".$pmon."' was found in the database, with the following information:\n";
-    print "Pokedex number: $row[pokemon_id]\n Name: $row[name]\n Type: $row[type1] $row[type2]\n";
-	print "$row[pokemon_id]";
+    print "Pokedex number: $row[pokemon_id]\nName: $row[name]\nType: $row[type1] $row[type2]\n";
+	print "Stats:\n Hit points $row[hit_points]\n Attack: $row[attack]\n Defense: $row[defense]\n Special Attack: $row[special_attack]\n Special Defense: $row[special_defense]\n Speed: $row[speed]\n\n";
+    if($row[pokemon_id])
+	{
+		print "Pokemon has an ID";
+	}
+	print "";
   }
 print "</pre>";
 
