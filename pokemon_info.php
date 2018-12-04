@@ -61,8 +61,15 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	print "Stats:\n Hit points $row[hit_points]\n Attack: $row[attack]\n Defense: $row[defense]\n Special Attack: $row[special_attack]\n Special Defense: $row[special_defense]\n Speed: $row[speed]\n\n";
     if($row[evolves_to])
 	{
-		print "$pmon evolves to $row[evolves_to]";
+		print "$pmon evolves into $row[evolves_to]";
+		if($row[second_evolution])
+		{
+			print " which in turn evolves into $row[second_evolution]";
+		}
+		print ".\n";
 	}
+	
+	
 	print "";
   }
 print "</pre>";
