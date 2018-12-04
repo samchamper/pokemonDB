@@ -56,7 +56,7 @@ if(! mysqli_num_rows($result))
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
     print "\n";
-	print "'".$pmon."' was found in the database, with the following information:\n";
+	print "'".$pmon."' was found in the database, with the following information:\n\n";
     print "Pokedex number: $row[pokemon_id]\nName: $row[name]\nType: $row[type1] $row[type2]\n";
 	print "Stats:\n Hit points $row[hit_points]\n Attack: $row[attack]\n Defense: $row[defense]\n Special Attack: $row[special_attack]\n Special Defense: $row[special_defense]\n Speed: $row[speed]\n\n";
     if($row[evolves_to])
@@ -68,8 +68,20 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		}
 		print ".\n";
 	}
+	if($row[previous_evolution])
+	{
+		print "$pmon evolves from $row[previous_evolution]";
+		if($row[second_previous_evolution])
+		{
+			print " which in turn evolves from $row[second_previous_evolution]";
+		}
+		print ".\n";
+	}
 	
-	
+	if($row[legendary] == "TRUE")
+	{
+		print "$pmon is a legendary pokemon. Approach with caution.";
+	}
 	print "";
   }
 print "</pre>";
