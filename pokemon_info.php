@@ -41,8 +41,6 @@ print $query;
 
 <hr>
 <p>
-Result of query:
-<p>
 
 <?php
 $result = mysqli_query($conn, $query)
@@ -52,9 +50,9 @@ print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
     print "\n";
-	if ($row[pokemon_id])
+	if (!$row[pokemon_id])
     {
-        print "Test\n";
+        print "There are no pokemon matching your query! Please try a different name/pokedex number!\n";
     }
     print "$row[pokemon_id]  $row[name] $row[type1] $row[type2]";
 	print "$row[pokemon_id]";
