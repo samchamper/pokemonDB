@@ -32,9 +32,6 @@ $query = $query."'".$pmon."';";
 
 $query2 = "SELECT loc_name FROM pokemon p JOIN pokemon_at_location pl on p.pokemon_id=pl.mon_id JOIN location l on l.loc_id=pl.location_id WHERE p.name LIKE ";
 $query2 = $query2."'".$pmon."' OR p.pokemon_id LIKE '$pmon';";
-//$query2 = $query2."'".$pmon."';";
-
-
 
 
 
@@ -46,6 +43,9 @@ The following queries were submitted to the pokemon database:
 <?php
 print $query;
 print "\n";
+?>
+<p>
+<?php
 print $query2;
 ?>
 
