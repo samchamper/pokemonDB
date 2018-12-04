@@ -4,6 +4,6 @@ $server = "ix.cs.uoregon.edu";
 $dbname ="pokemondb";
 $user = "guest";
 $pass = "guest";
-$port="3700";
+$port="3596";
 
 ?>
