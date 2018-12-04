@@ -75,7 +75,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	print "Stats:\n Hit points $row[hit_points]\n Attack: $row[attack]\n Defense: $row[defense]\n Special Attack: $row[special_attack]\n Special Defense: $row[special_defense]\n Speed: $row[speed]\n\n";
     if($row[evolves_to])
 	{
-		print "$pmon evolves into $row[evolves_to]";
+		print "$row[name] evolves into $row[evolves_to]";
 		if($row[second_evolution])
 		{
 			print " which in turn evolves into $row[second_evolution]";
@@ -84,7 +84,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	}
 	if($row[previous_evolution])
 	{
-		print "$pmon evolves from $row[previous_evolution]";
+		print "$row[name] evolves from $row[previous_evolution]";
 		if($row[second_previous_evolution])
 		{
 			print " which in turn evolves from $row[second_previous_evolution]";
@@ -94,19 +94,17 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	
 	if($row[legendary] == "TRUE")
 	{
-		print "$pmon is a legendary pokemon. Approach with caution.\n";
+		print "$row[name] is a legendary pokemon. Approach with caution.\n";
 	}
   }
 
-  
+print "\n\n";
 $result = mysqli_query($conn, $query2)
 or die(mysqli_error($conn));
 
 if(! mysqli_num_rows($result))
 {
-	$res_str = "There are no pokemon matching your query! ";
-	$res_str = $res_str."'".$pmon."' was not found in the database. Please try a different name/pokedex number!\n";
-    print $res_str;
+	print "There are no routes along which this pokemon can be captured!";
 }
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
@@ -116,7 +114,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	print "Stats:\n Hit points $row[hit_points]\n Attack: $row[attack]\n Defense: $row[defense]\n Special Attack: $row[special_attack]\n Special Defense: $row[special_defense]\n Speed: $row[speed]\n\n";
     if($row[evolves_to])
 	{
-		print "$pmon evolves into $row[evolves_to]";
+		print "$row[name] evolves into $row[evolves_to]";
 		if($row[second_evolution])
 		{
 			print " which in turn evolves into $row[second_evolution]";
