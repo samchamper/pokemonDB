@@ -80,10 +80,12 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	
 	if($row[legendary] == "TRUE")
 	{
-		print "$pmon is a legendary pokemon. Approach with caution.";
+		print "$pmon is a legendary pokemon. Approach with caution.\n";
 	}
-	print "";
   }
+
+  
+  
 print "</pre>";
 
 mysqli_free_result($result);
