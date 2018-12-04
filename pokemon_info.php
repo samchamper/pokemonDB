@@ -49,7 +49,9 @@ or die(mysqli_error($conn));
 print "<pre>";
 if(! mysqli_num_rows($result))
 {
-    print "There are no pokemon matching your query! Please try a different name/pokedex number!\n";
+	$res_str = "There are no pokemon matching your query!";
+	$res_str = $res_str."'".$pmon."' was not found in the database. Please try a different name/pokedex number!\n";
+    print $res_str;
 }
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
