@@ -2,7 +2,7 @@
 
 include('connectionData.txt');
 
-$conn = mysqli_connect($server, $user, $pass, "stores7", $port)
+$conn = mysqli_connect($server, $user, $pass, "pokemondb", $port)
 or die('Error connecting to MySQL server.');
 
 ?>
