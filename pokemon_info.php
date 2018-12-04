@@ -52,7 +52,7 @@ print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
     print "\n";
-	if pokemon_id == "Mew"
+	if (pokemon_id == "Mew")
         {print("Test\n")}
     print "$row[pokemon_id]  $row[name] $row[type1] $row[type2]";
   }
