@@ -59,9 +59,9 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	print "'".$pmon."' was found in the database, with the following information:\n";
     print "Pokedex number: $row[pokemon_id]\nName: $row[name]\nType: $row[type1] $row[type2]\n";
 	print "Stats:\n Hit points $row[hit_points]\n Attack: $row[attack]\n Defense: $row[defense]\n Special Attack: $row[special_attack]\n Special Defense: $row[special_defense]\n Speed: $row[speed]\n\n";
-    if($row[pokemon_id])
+    if($row[evolves_to])
 	{
-		print "Pokemon has an ID";
+		print "$pmon evolves to $row[evolves_to]";
 	}
 	print "";
   }
