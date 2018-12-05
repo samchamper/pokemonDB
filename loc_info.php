@@ -100,12 +100,12 @@ else
 			}
 			if ($row[has_store] == '1')
 			{
-				print "\n The town has a Pokemart.\n\nBecause the town has a Pokemart, various items are available for sale here.\n The following items are available:";
+				print "\n The town has a Pokemart.\n\nBecause the town has a Pokemart, various items are available for sale here.\nThe following items are available:\n";
 				$result = mysqli_query($conn, $query3)
 				or die(mysqli_error($conn));
 				while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 				{
-					print " $row[number_in_stock] $row[item_name](s) are available for $row[store_sells_for_price] each.\n";
+					print " $row[number_in_stock] $row[item_name](s) for $row[store_sells_for_price] each.\n";
 				}				
 			}
 		}
