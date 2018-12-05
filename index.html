@@ -15,7 +15,7 @@
 <p>
 Application 1. Pokemon information query
 <p>
-Enter a Pokemon species name or Pokedex number (1-151):
+Enter a Pokemon species name or Pokedex number (1 to 151):
 <p>
 <form action="pokemon_info.php" method="POST">
     <input type="text" name="pmon"> <br>
@@ -31,6 +31,18 @@ Enter a Pokemon type (from Normal, Fire, Fighting, Water, Flying, Grass, Poison,
 <p>
 <form action="pokemon_of_type.php" method="POST">
     <input type="text" name="ptype"> <br>
+    <input type="submit" value="submit">
+</form>
+
+
+<hr>
+<p>
+Application 3. Pokemon Greater than Minimum Stat Total
+<p>
+Enter a stat total (Pokemon range from 195 to 680):
+<p>
+<form action="pokemon_stat.php" method="POST">
+    <input type="text" name="total"> <br>
     <input type="submit" value="submit">
 </form>
 
