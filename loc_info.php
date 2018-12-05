@@ -27,7 +27,7 @@ $loc = mysqli_real_escape_string($conn, $loc);
 
 $query = "SELECT x.loc_id, x.loc_name, x.loc_type, COALESCE(n.loc_name, 'nothing in particular') AS north, COALESCE(s.loc_name, 'nothing in particular') AS south, COALESCE(w.loc_name, 'nothing in particular') AS west, COALESCE(e.loc_name, 'nothing in particular') AS east FROM location x LEFT JOIN location n on n.loc_id=x.north_loc LEFT JOIN location s on s.loc_id=x.south_loc LEFT JOIN location e on e.loc_id=x.east_loc LEFT JOIN location w on w.loc_id=x.west_loc WHERE x.loc_id LIKE '$loc' OR x.loc_name LIKE '$loc';";
 
-$query2 = ";";
+$query2 = "SELECT has_store, has_pokemon_center, has_gym FROM location JOIN town ON loc_id=town_loc_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc';";
 
 $query3 = "SELECT name FROM location JOIN pokemon_at_location ON loc_id=location_id JOIN pokemon ON mon_id=pokemon_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc' ORDER BY name;";
 
@@ -79,8 +79,24 @@ else
 	{
 
 
-
-
+		print "Because $loc_name is a town/city, it has some amenities:";
+		$result = mysqli_query($conn, $query3)
+		or die(mysqli_error($conn));
+		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+		{
+			if ($row[has_pokemon_center] == 1)
+			{
+				print "\n The town has a pokemon center.";
+			}
+			if ($row[has_gym] == 1)
+			{
+				print "\n The town has a pokemon gym.";
+			}
+			if ($row[has_store] == 1)
+			{
+				print "\n The town has a Pokemart.";
+			}
+		}
 	}
 	else
 	{
