@@ -46,15 +46,15 @@ or die(mysqli_error($conn));
 print "<pre>";
 if(! mysqli_num_rows($result))
 {
-	print "There are no pokemon matching your query! $ptype may be an invalid type! Please try a different type!";
+	print "There are no pokemon matching your query! '$ptype' may be an invalid type! Please try a different type!";
 }
 else
 {
-	print "Pokedex No.\tName\tSecondary Type\n";
+	print "Pokedex No.\tName\t\tSecondary Type\n";
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		print "\n";
-		print "$row[pokemon_id]\t $row[name]\t $row[other_type]";
+		print "$row[pokemon_id]\t\t $row[name]\t\t $row[other_type]";
 	}
 }
 ?>
