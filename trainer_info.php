@@ -92,7 +92,7 @@ else
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
-			$tid = $row[trainer_id]
+			$tid = $row[trainer_id];
 			print "\n";
 			print "Trainer $tid has the following pokemon and items:\n";
 			
