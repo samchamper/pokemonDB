@@ -84,6 +84,7 @@ else
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
+			print $row[has_pokemon_center];
 			if ($row[has_pokemon_center] == '1')
 			{
 				print "\n The town has a pokemon center.";
