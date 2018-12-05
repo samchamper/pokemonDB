@@ -25,16 +25,29 @@ $traner_loc = mysqli_real_escape_string($conn, $traner_loc);
 // this is a small attempt to avoid SQL injection
 // better to use prepared statements
 
-$pre_query = "SELECT loc_name FROM location WHERE loc_id LIKE '$traner_loc';";
+$pre_query = "SELECT loc_name FROM location WHERE loc_id LIKE '$traner_loc' OR loc_name LIKE '$traner_loc';";
 
 $query = "SELECT trainer_id FROM trainer WHERE route LIKE '$traner_loc';";
 ?>
 
 <p>
-The following initial query was submitted to the pokemon database:
+The following initial querys was submitted to the pokemon database:
+<p>
+<?php
+print $pre_query;
+?>
 <p>
 <?php
 print $query;
+?>
+<p>
+Then the following queries used the return values from the above queries:
+<?php
+print "SELECT name as pokemon_name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE [RETURN VALUES FROM PREVIOUS QUERY];"
+?>
+<p>
+<?php
+print "WHERE trainer_id LIKE [RETURN VALUES FROM PREVIOUS QUERY];"
 ?>
 <p>
 
@@ -72,12 +85,17 @@ else
 			print "\n";
 			print "Trainer $row[trainer_id]";
 		}
+		print "\n\n"
 		$result = mysqli_query($conn, $query)
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			print "\n";
-			print "Trainer $row[trainer_id]";
+			print "Trainer $row[trainer_id] has the following pokemon and items:\n";
+			
+			
+			
+			
 		}
 	}
 }
