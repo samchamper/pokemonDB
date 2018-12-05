@@ -55,7 +55,7 @@ else
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		print "\n";
-		print "$row[pokemon_id]\t$row[stat_total]\t$row[name]";
+		print "$row[pokemon_id]\t\t$row[stat_total]\t$row[name]";
 	}
 }
 ?>
