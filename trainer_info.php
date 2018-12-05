@@ -104,6 +104,7 @@ else
 			}
 
 			$item_query = "SELECT identifier FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$row[trainer_id]';";
+			print $item_query;
 			$subresult2 = mysqli_query($conn, $item_query)
 			or die(mysqli_error($conn));
 			while($row = mysqli_fetch_array($subresult2, MYSQLI_BOTH))
