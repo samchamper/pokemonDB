@@ -68,7 +68,7 @@ if(! mysqli_num_rows($result))
 }
 else
 {
-	print "'$item' was found in the database, with the following information:\n";
+	print "'$item' was found in the database, with the following information:\n\n";
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		$item_name = $row[item_name];
@@ -121,7 +121,7 @@ else
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		print "\n";
-		print " Trainer $row[trainer_id], located at $row[loc_name] at x coordinate $row[x_coord] and y coordinate $row[y_coord].";
+		print " Trainer $row[trainer_id], located in $row[loc_name] at x coordinate $row[x_coord] and y coordinate $row[y_coord].";
 	}
 	
 }
