@@ -84,7 +84,7 @@ else
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			print "\n";
-			print "Trainer $row[trainer_id]";
+			print " Trainer $row[trainer_id]";
 		}
 		
 		print "\n\n";
@@ -101,15 +101,15 @@ else
 			or die(mysqli_error($conn));
 			while($row = mysqli_fetch_array($subresult, MYSQLI_BOTH))
 			{
-				print  "A level $row[level] $row[name].\n";
+				print  " A level $row[level] $row[name].\n";
 			}
 
-			$item_query = "SELECT identifier FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$t_id';";
+			$item_query = "SELECT identifier as item_name FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$t_id';";
 			$subresult2 = mysqli_query($conn, $item_query)
 			or die(mysqli_error($conn));
 			while($row = mysqli_fetch_array($subresult2, MYSQLI_BOTH))
 			{
-				print  "A $row[identifier].\n";
+				print  " A $row[item_name].\n";
 			}
 		}
 	}
