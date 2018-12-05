@@ -32,7 +32,7 @@ CREATE TABLE `inventory` (
   KEY `loc_id_idx` (`store_loc_id`),
   CONSTRAINT `item_id` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`),
   CONSTRAINT `loc_id` FOREIGN KEY (`store_loc_id`) REFERENCES `town` (`town_loc_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `item` (
   `identifier` text,
   `short_effect` text,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `location` (
   `west_loc` int(11) DEFAULT NULL,
   `east_loc` int(11) DEFAULT NULL,
   PRIMARY KEY (`loc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'Route 1','Route',NULL,1,12,2),(2,'Route 2','Route',NULL,NULL,1,8),(3,'Route 3','Route',NULL,14,13,NULL),(4,'Route 4','Route',5,9,NULL,4),(5,'Route 5','Route',NULL,4,11,13),(6,'Route 6','Route',NULL,15,NULL,11),(7,'Route 7','Route',10,NULL,NULL,15),(8,'Drab Dunes','Route',NULL,13,2,NULL),(9,'Cerulean Caves','Route',4,NULL,NULL,NULL),(10,'Mt. Apple','Route',NULL,7,NULL,NULL),(11,'East City','Town',1,NULL,6,5),(12,'Peninsula City','Town',NULL,NULL,NULL,1),(13,'Dunes City','Town',8,NULL,5,3),(14,'Island Town','Town',3,NULL,4,NULL),(15,'Mountain Town','Town',6,NULL,7,NULL);
+INSERT INTO `location` VALUES (1,'Route 1','Route',NULL,11,12,2),(2,'Route 2','Route',NULL,NULL,1,8),(3,'Route 3','Route',NULL,14,13,NULL),(4,'Route 4','Route',5,9,NULL,4),(5,'Route 5','Route',NULL,4,11,13),(6,'Route 6','Route',NULL,15,NULL,11),(7,'Route 7','Route',10,NULL,NULL,15),(8,'Drab Dunes','Route',NULL,13,2,NULL),(9,'Cerulean Caves','Route',4,NULL,NULL,NULL),(10,'Mt. Apple','Route',NULL,7,NULL,NULL),(11,'East City','Town',1,NULL,6,5),(12,'Peninsula City','Town',NULL,NULL,NULL,1),(13,'Dunes City','Town',8,NULL,5,3),(14,'Island Town','Town',3,NULL,4,NULL),(15,'Mountain Town','Town',6,NULL,7,NULL);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +121,7 @@ CREATE TABLE `pokemon` (
   `legendary` varchar(45) DEFAULT NULL,
   `evolves_from_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`pokemon_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `pokemon_at_location` (
   KEY `mon_id_idx` (`mon_id`),
   CONSTRAINT `location_id` FOREIGN KEY (`location_id`) REFERENCES `location` (`loc_id`),
   CONSTRAINT `mon_id` FOREIGN KEY (`mon_id`) REFERENCES `pokemon` (`pokemon_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `town` (
   `has_gym` int(11) DEFAULT NULL,
   KEY `town_loc_id_idx` (`town_loc_id`),
   CONSTRAINT `town_loc_id` FOREIGN KEY (`town_loc_id`) REFERENCES `location` (`loc_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `trainer` (
   PRIMARY KEY (`trainer_id`),
   KEY `route_idx` (`route`),
   CONSTRAINT `route` FOREIGN KEY (`route`) REFERENCES `location` (`loc_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +230,7 @@ CREATE TABLE `trainer_has_item` (
   KEY `item_idx` (`item`),
   CONSTRAINT `item` FOREIGN KEY (`item`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `trainer` FOREIGN KEY (`trainer`) REFERENCES `trainer` (`trainer_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE `trainer_has_pokemon` (
   KEY `trainer_num_idx` (`trainer_num`),
   KEY `pokemon_num_idx` (`pokemon_num`),
   CONSTRAINT `trainer_num` FOREIGN KEY (`trainer_num`) REFERENCES `trainer` (`trainer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-04 22:15:00
+-- Dump completed on 2018-12-05  1:16:03
