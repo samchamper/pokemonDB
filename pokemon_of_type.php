@@ -25,7 +25,7 @@ $ptype = mysqli_real_escape_string($conn, $ptype);
 // this is a small attempt to avoid SQL injection
 // better to use prepared statements
 
-$query = "SELECT pokemon_id, name, COALESCE(type_2, " None ") as other_type FROM pokemon WHERE type_1 LIKE '$ptype' UNION SELECT pokemon_id, name, COALESCE(type_1, " None ") as other_type FROM pokemon WHERE type_2 LIKE '$ptype' ORDER BY pokemon_id;";
+$query = "SELECT pokemon_id, name, COALESCE(type_2, 'None') as other_type FROM pokemon WHERE type_1 LIKE '$ptype' UNION SELECT pokemon_id, name, COALESCE(type_1, 'None') as other_type FROM pokemon WHERE type_2 LIKE '$ptype' ORDER BY pokemon_id;";
 ?>
 
 <p>
