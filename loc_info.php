@@ -80,7 +80,7 @@ else
 
 
 		print "Because $loc_name is a town/city, it has some amenities:";
-		$result = mysqli_query($conn, $query3)
+		$result = mysqli_query($conn, $query2)
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
