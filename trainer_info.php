@@ -30,27 +30,7 @@ $pre_query = "SELECT loc_name FROM location WHERE loc_id LIKE '$traner_loc' OR l
 $query = "SELECT trainer_id FROM trainer WHERE route LIKE '$traner_loc';";
 ?>
 
-<p>
-The following initial querys was submitted to the pokemon database:
-<p>
-<?php
-print $pre_query;
-?>
-<p>
-<?php
-print $query;
-?>
-<p>
-Then the following queries used the return values from the above queries:
-<p>
-<?php
-print "SELECT name as pokemon_name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE [RETURN VALUES FROM PREVIOUS QUERY];";
-?>
-<p>
-<?php
-print "WHERE trainer_id LIKE [RETURN VALUES FROM PREVIOUS QUERY];";
-?>
-<p>
+
 
 <hr>
 <p>
