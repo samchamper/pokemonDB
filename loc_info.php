@@ -29,7 +29,7 @@ $query = "SELECT x.loc_id, x.loc_name, x.loc_type, COALESCE(n.loc_name, 'nothing
 
 $query2 = ";";
 
-$query3 = "SELECT name FROM location JOIN pokemon_at_location ON loc_id=location_id JOIN pokemon ON mon_id=pokemon_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc';";
+$query3 = "SELECT name FROM location JOIN pokemon_at_location ON loc_id=location_id JOIN pokemon ON mon_id=pokemon_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc' ORDER BY name;";
 
 
 ?>
@@ -73,7 +73,7 @@ else
 		$type = "$row[loc_type]";
 		$loc_name = "$row[loc_name]";
 		print "Loc ID: $row[loc_id]\nLoc Name: $row[loc_name]\nLoc type: $row[loc_type].\n";
-		print "To the North lies $row[north], to the East lies $row[east]\nto the South lies $row[south] to the West lies $row[west].\n";
+		print "To the North lies $row[north], to the East lies $row[east]\nto the South lies $row[south] to the West lies $row[west].\n\n\n";
 	}
 	if ($type == "Town")
 	{
@@ -84,12 +84,12 @@ else
 	}
 	else
 	{
-		print "Because $loc_name is a route, wild Pokemon can be caught there! The following Pokemon live there:\n";
+		print "Because $loc_name is a route, wild Pokemon can be caught there! The following Pokemon live there:";
 		$result = mysqli_query($conn, $query3)
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
-			print "\n$row[name]";
+			print "\n $row[name]";
 		}
 	}
 }
