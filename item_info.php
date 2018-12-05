@@ -81,7 +81,7 @@ else
 	or die(mysqli_error($conn));	
 	if(! mysqli_num_rows($result))
 	{
-		print "There are no towns where $item_name is currently in stock!\n";
+		print "There are no towns where $item_name is currently in stock!";
 	}
 	else
 	{
