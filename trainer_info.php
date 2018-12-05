@@ -25,6 +25,8 @@ $traner_loc = mysqli_real_escape_string($conn, $traner_loc);
 // this is a small attempt to avoid SQL injection
 // better to use prepared statements
 
+$pre_query = "SELECT loc_name FROM location WHERE loc_id LIKE '$traner_loc';";
+
 $query = "SELECT trainer_id FROM trainer WHERE route LIKE '$traner_loc';";
 ?>
 
@@ -40,21 +42,36 @@ print $query;
 <p>
 
 <?php
-$result = mysqli_query($conn, $query)
+$result = mysqli_query($conn, $pre_query)
 or die(mysqli_error($conn));
 
 print "<pre>";
 if(! mysqli_num_rows($result))
 {
-	print "There are no no trainers in $traner_loc, or perhaps $traner_loc is an invalid location! Please try a different location!";
+	print "It looks like '$traner_loc' is an invalid location! Please try a different location!";
 }
 else
 {
-	print "Trainer_id\n";
+	$loc_name = "";
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
-		print "\n";
-		print "$row[trainer_id]";
+		$loc_name = "$row[loc_name]";
+	}
+	$result = mysqli_query($conn, $query)
+	or die(mysqli_error($conn));
+
+	if(! mysqli_num_rows($result))
+	{
+		print "There are no no trainers in $loc_name! Please try a different location!";
+	}
+	else
+	{
+		print "Trainer_id\n";
+		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+		{
+			print "\n";
+			print "$row[trainer_id]";
+		}
 	}
 }
 ?>
