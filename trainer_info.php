@@ -42,6 +42,7 @@ print $query;
 ?>
 <p>
 Then the following queries used the return values from the above queries:
+<p>
 <?php
 print "SELECT name as pokemon_name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE [RETURN VALUES FROM PREVIOUS QUERY];";
 ?>
@@ -85,6 +86,7 @@ else
 			print "\n";
 			print "Trainer $row[trainer_id]";
 		}
+		
 		print "\n\n"
 		$result = mysqli_query($conn, $query)
 		or die(mysqli_error($conn));
