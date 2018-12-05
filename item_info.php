@@ -85,7 +85,7 @@ else
 	}
 	else
 	{
-		print "You can find $item_name(s) is currently in stock at the following location(s):";
+		print "You can find $item_name(s) currently in stock at the following location(s):";
 	}
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
@@ -104,7 +104,7 @@ else
 	}
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
-		print "The place that pays the highest price for $item_name(s) is the shop in $row[loc_name], which will pay $row[store_buys_for] per $item_name.\nConsider selling there if you have extras!\n";
+		print "The place that pays the highest price for $item_name(s) is the shop in $row[loc_name], which will pay $row[store_buys_for] per $item_name.\n Consider selling there if you have extras!\n";
 	}
 
 	print "\n\n";
