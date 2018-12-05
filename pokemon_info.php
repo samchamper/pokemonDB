@@ -110,13 +110,40 @@ if(! mysqli_num_rows($result))
 }
 else
 {
-	print "$pmon_name can be captured on the following routes:";
+	print "$pmon_name can be captured on the following route(s):";
 }
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
     print "\n";
     print " $row[loc_name]";
   }
+
+print "\n\n";
+$result = mysqli_query($conn, $query3)
+or die(mysqli_error($conn));
+
+if(! mysqli_num_rows($result))
+{
+	print "There are no trainers in possession of a $pmon_name!";
+}
+else
+{
+	print "The following trainers have a $pmon_name:";
+}
+while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+{
+    print "\n";
+    print "Trainer $row[trainer_id], located in $row[loc_name], has a level $row[level] $pmon_name";
+	if($row[loc_type] == "Town")
+	{
+		print ", and is a gym leader";
+	}
+	print ".";
+}
+}
+  
+  
+  
 }
 ?>
 
