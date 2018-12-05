@@ -94,8 +94,14 @@ else
 		{
 			print "\n";
 			print "Trainer $row[trainer_id] has the following pokemon and items:\n";
-			
-			
+			$pokemon_query = "SELECT name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE '$row[trainer_id]';";
+			$result = mysqli_query($conn, $pokemon_query)
+			or die(mysqli_error($conn));
+			while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+			{
+				print "A level $row[level] $row[name].\n";
+			}
+
 			
 			
 		}
