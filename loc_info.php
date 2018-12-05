@@ -60,12 +60,23 @@ if(! mysqli_num_rows($result))
 }
 else
 {
+	$type="";
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
-		$loc_name = "$row[loc_name]";
-		print "Loc ID: $row[loc_name]\nLoc Name: $row[loc_name]\nLoc type: $row[loc_type].";
-		print "To the North lies $row[north], to the East lies $row[east]\n to the South lies $row[south] to the West lies $row[west].\n";
+		$type = "$row[loc_type]";
+		print "Loc ID: $row[loc_id]\nLoc Name: $row[loc_name]\nLoc type: $row[loc_type].\n";
+		print "To the North lies $row[north], to the East lies $row[east]\nto the South lies $row[south] to the West lies $row[west].\n";
 	}
+
+	if ($type = "Town")
+	{
+		print "It's a town";
+	}
+	else
+	{
+		print "It's a route";
+	}
+	
 
 }
 ?>
