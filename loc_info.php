@@ -79,7 +79,7 @@ else
 		$type = "$row[loc_type]";
 		$loc_name = "$row[loc_name]";
 		print "Loc ID: $row[loc_id]\nLoc Name: $row[loc_name]\nLoc type: $row[loc_type].\n";
-		print "To the North lies $row[north], to the East lies $row[east]\nto the South lies $row[south] to the West lies $row[west].\n\n\n";
+		print "To the North lies $row[north], to the East lies $row[east],\nto the South lies $row[south], to the West lies $row[west].\n\n\n";
 	}
 	if ($type == "Town")
 	{
