@@ -66,11 +66,16 @@ else
 	}
 	else
 	{
-		print "Trainer_id\n";
+		print "The following trainers are present in $loc_name:";
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			print "\n";
-			print "$row[trainer_id]";
+			print "Trainer $row[trainer_id]";
+			
+			
+			
+			
+			
 		}
 	}
 }
