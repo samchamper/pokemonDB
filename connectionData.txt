@@ -1,9 +1,0 @@
-<?php
-
-$server = "ix.cs.uoregon.edu";
-$dbname ="pokemondb";
-$user = "guest";
-$pass = "guest";
-$port="3596";
-
-?>
