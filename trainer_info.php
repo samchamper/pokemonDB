@@ -104,9 +104,9 @@ else
 			}
 
 			$item_query = "SELECT identifier FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$row[trainer_id]';";
-			$subresult = mysqli_query($conn, $item_query)
+			$subresult2 = mysqli_query($conn, $item_query)
 			or die(mysqli_error($conn));
-			while($row = mysqli_fetch_array($subresult, MYSQLI_BOTH))
+			while($row = mysqli_fetch_array($subresult2, MYSQLI_BOTH))
 			{
 				print  "A $row[identifier].\n";
 			}
@@ -120,6 +120,7 @@ else
 print "</pre>";
 mysqli_free_result($result);
 mysqli_free_result($subresult);
+mysqli_free_result($subresult2);
 mysqli_close($conn);
 ?>
 <p>
