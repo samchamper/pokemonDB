@@ -109,7 +109,7 @@ else
 			while($row = mysqli_fetch_array($subresult, MYSQLI_BOTH))
 			{
 				print  "A $row[item_name].\n";
-			}			
+			}
 		}
 	}
 }
