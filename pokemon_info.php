@@ -136,7 +136,7 @@ else
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 {
     print "\n";
-    print "Trainer $row[trainer_id], located in $row[loc_name], has a level $row[level] $pmon_name";
+    print " Trainer $row[trainer_id], located in $row[loc_name], has a level $row[level] $pmon_name";
 	if($row[loc_type] == "Town")
 	{
 		print ", and is a gym leader";
