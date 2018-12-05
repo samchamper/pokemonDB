@@ -143,13 +143,8 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	}
 	print ".";
 }
-
-
 }
-
 ?>
-
-
 
 
 <?php
