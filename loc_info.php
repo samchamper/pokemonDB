@@ -26,6 +26,12 @@ $loc = mysqli_real_escape_string($conn, $loc);
 // better to use prepared statements
 
 $query = "SELECT x.loc_id, x.loc_name, x.loc_type, COALESCE(n.loc_name, 'nothing in particular') AS north, COALESCE(s.loc_name, 'nothing in particular') AS south, COALESCE(w.loc_name, 'nothing in particular') AS west, COALESCE(e.loc_name, 'nothing in particular') AS east FROM location x LEFT JOIN location n on n.loc_id=x.north_loc LEFT JOIN location s on s.loc_id=x.south_loc LEFT JOIN location e on e.loc_id=x.east_loc LEFT JOIN location w on w.loc_id=x.west_loc WHERE x.loc_id LIKE '$loc' OR x.loc_name LIKE '$loc';";
+
+$query2 = ";";
+
+$query3 = "SELECT name FROM location JOIN pokemon_at_location ON loc_id=location_id JOIN pokemon ON mon_id=pokemon_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc';";
+
+
 ?>
 
 <p>
@@ -35,14 +41,14 @@ The following initial query was submitted to the pokemon database:
 print $query;
 ?>
 <p>
-Then the following queries used the return values from the above queries:
+Then the following queries may be used, depending on the location type:
 <p>
 <?php
 print "SELECT name as pokemon_name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE '[RETURN VALUES FROM PREVIOUS QUERY]';";
 ?>
 <p>
 <?php
-print "SELECT identifier as item_name FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '[RETURN VALUES FROM PREVIOUS QUERY]';";
+print $query3;
 ?>
 <p>
 
@@ -60,23 +66,32 @@ if(! mysqli_num_rows($result))
 }
 else
 {
-	$type="";
+	$type = "";
+	$loc_name = "";
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		$type = "$row[loc_type]";
+		$loc_name = "$row[loc_name]";
 		print "Loc ID: $row[loc_id]\nLoc Name: $row[loc_name]\nLoc type: $row[loc_type].\n";
 		print "To the North lies $row[north], to the East lies $row[east]\nto the South lies $row[south] to the West lies $row[west].\n";
 	}
 	if ($type == "Town")
 	{
-		print "It's a town";
+
+
+
+
 	}
 	else
 	{
-		print "It's a route";
+		print "Because $loc_name is a route, wild Pokemon can be caught there! The following Pokemon live there:\n";
+		$result = mysqli_query($conn, $query3)
+		or die(mysqli_error($conn));
+		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+		{
+			print "\n$row[name]";
+		}
 	}
-	
-
 }
 ?>
 
