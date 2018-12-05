@@ -84,15 +84,15 @@ else
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
-			if ($row[has_pokemon_center] == 1)
+			if ($row[has_pokemon_center] == '1')
 			{
 				print "\n The town has a pokemon center.";
 			}
-			if ($row[has_gym] == 1)
+			if ($row[has_gym] == '1')
 			{
 				print "\n The town has a pokemon gym.";
 			}
-			if ($row[has_store] == 1)
+			if ($row[has_store] == '1')
 			{
 				print "\n The town has a Pokemart.";
 			}
