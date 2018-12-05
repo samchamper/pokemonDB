@@ -103,12 +103,12 @@ else
 				print  "A level $row[level] $row[name].\n";
 			}
 
-			$item_query = "SELECT identifier as item_name FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$row[trainer_id]';";
+			$item_query = "SELECT identifier FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$row[trainer_id]';";
 			$subresult = mysqli_query($conn, $item_query)
 			or die(mysqli_error($conn));
 			while($row = mysqli_fetch_array($subresult, MYSQLI_BOTH))
 			{
-				print  "A $row[item_name].\n";
+				print  "A $row[identifier].\n";
 			}
 		}
 	}
