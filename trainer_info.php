@@ -92,11 +92,11 @@ else
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
-			$tid = $row[trainer_id];
+			$t_id = $row[trainer_id];
 			print "\n";
-			print "Trainer $tid has the following pokemon and items:\n";
+			print "Trainer $t_id has the following pokemon and items:\n";
 			
-			$pokemon_query = "SELECT name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE '$tid';";
+			$pokemon_query = "SELECT name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE '$t_id';";
 			$subresult = mysqli_query($conn, $pokemon_query)
 			or die(mysqli_error($conn));
 			while($row = mysqli_fetch_array($subresult, MYSQLI_BOTH))
@@ -104,8 +104,7 @@ else
 				print  "A level $row[level] $row[name].\n";
 			}
 
-			$item_query = "SELECT identifier FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$tid';";
-			print $item_query;
+			$item_query = "SELECT identifier FROM trainer JOIN trainer_has_item ON trainer=trainer_id JOIN item ON item=item_id WHERE trainer_id LIKE '$t_id';";
 			$subresult2 = mysqli_query($conn, $item_query)
 			or die(mysqli_error($conn));
 			while($row = mysqli_fetch_array($subresult2, MYSQLI_BOTH))
