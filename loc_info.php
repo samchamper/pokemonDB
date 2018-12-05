@@ -29,7 +29,9 @@ $query = "SELECT x.loc_id, x.loc_name, x.loc_type, COALESCE(n.loc_name, 'nothing
 
 $query2 = "SELECT has_store, has_pokemon_center, has_gym FROM location JOIN town ON loc_id=town_loc_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc';";
 
-$query3 = "SELECT name FROM location JOIN pokemon_at_location ON loc_id=location_id JOIN pokemon ON mon_id=pokemon_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc' ORDER BY name;";
+$query3 = "SELECT identifier as item_name, number_in_stock, store_sells_for_price, store_buys_for_price FROM location JOIN town ON loc_id=town_loc_id JOIN inventory on town_loc_id=store_loc_id JOIN item USING(item_id) WHERE number_in_stock > 0 AND loc_id LIKE '$loc' OR loc_name LIKE '$loc';";
+
+$query4 = "SELECT name FROM location JOIN pokemon_at_location ON loc_id=location_id JOIN pokemon ON mon_id=pokemon_id WHERE loc_id LIKE '$loc' OR loc_name LIKE '$loc' ORDER BY name;";
 
 
 ?>
@@ -44,11 +46,15 @@ print $query;
 Then the following queries may be used, depending on the location type:
 <p>
 <?php
-print "SELECT name as pokemon_name, level FROM trainer JOIN trainer_has_pokemon ON trainer_num=trainer_id JOIN pokemon ON pokemon_num=pokemon_id WHERE trainer_id LIKE '[RETURN VALUES FROM PREVIOUS QUERY]';";
+print $query2;
 ?>
 <p>
 <?php
 print $query3;
+?>
+<p>
+<?php
+print $query4;
 ?>
 <p>
 
@@ -84,7 +90,6 @@ else
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
-			print $row[has_pokemon_center];
 			if ($row[has_pokemon_center] == '1')
 			{
 				print "\n The town has a pokemon center.";
@@ -95,14 +100,20 @@ else
 			}
 			if ($row[has_store] == '1')
 			{
-				print "\n The town has a Pokemart.";
+				print "\n The town has a Pokemart.\n\nBecause the town has a Pokemart, various items are available for sale here.\n The following items are available:";
+				$result = mysqli_query($conn, $query3)
+				or die(mysqli_error($conn));
+				while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+				{
+					print " $row[number_in_stock] $row[item_name](s) are available for $row[store_sells_for_price] each.\n";
+				}				
 			}
 		}
 	}
 	else
 	{
 		print "Because $loc_name is a route, wild Pokemon can be caught there! The following Pokemon live there:";
-		$result = mysqli_query($conn, $query3)
+		$result = mysqli_query($conn, $query4)
 		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
