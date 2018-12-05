@@ -68,7 +68,7 @@ if(! mysqli_num_rows($result))
 }
 else
 {
-	print "'$item' was found in the database, with the following information:\n\n";
+	print "'$item' was found in the database, with the following information:\n";
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		$item_name = $row[item_name];
@@ -81,30 +81,30 @@ else
 	or die(mysqli_error($conn));	
 	if(! mysqli_num_rows($result))
 	{
-		print "There are no towns where $item_name is currently in stock!";
+		print "There are no towns where $item_name is currently in stock!\n";
 	}
 	else
 	{
-		print "$item_name is currently in stock at the following location(s):\n";
+		print "You can find $item_name(s) is currently in stock at the following location(s):";
 	}
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
 		print "\n";
-		print " $row[loc_name], where $row[number_in_stock] are available for $row[sale_price] each.";
+		print " $row[loc_name], where $row[number_in_stock] are available for $row[sale_price] dollars each.";
 	}
 
   
-	print "\n\n";
+	print "\n\n\n";
 	$result = mysqli_query($conn, $query3)
 	or die(mysqli_error($conn));
 
 	if(! mysqli_num_rows($result))
 	{
-		print "Error determining best place to sell item.";
+		print "Error determining best place to sell item.\n";
 	}
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
-		print "The place that pays the highest price for $item_name is the shop in $row[loc_name], which will pay $row[store_buys_for] per $item_name. Consider selling there if you have extras!";
+		print "The place that pays the highest price for $item_name(s) is the shop in $row[loc_name], which will pay $row[store_buys_for] per $item_name.\nConsider selling there if you have extras!\n";
 	}
 
 	print "\n\n";
@@ -112,11 +112,11 @@ else
 	or die(mysqli_error($conn));	
 	if(! mysqli_num_rows($result))
 	{
-		print "There are no trainers who possess a $item_name!";
+		print "There are no trainers who possess a $item_name!\n";
 	}
 	else
 	{
-		print "Currently, the following trainers are in possession of a $item_name:\n";
+		print "Currently, the following trainers are in possession of a $item_name:";
 	}
 	while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	{
