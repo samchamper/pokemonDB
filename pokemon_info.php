@@ -70,7 +70,7 @@ if(! mysqli_num_rows($result))
 }else{
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
-	$pmon_name = $row[name]
+	$pmon_name = $row[name];
     print "\n";
 	print "'".$pmon."' was found in the database, with the following information:\n\n";
     print "Pokedex number: $row[pokemon_id]\nName: $row[name]\nType: $row[type1] $row[type2]\n";
