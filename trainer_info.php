@@ -72,7 +72,8 @@ else
 			print "\n";
 			print "Trainer $row[trainer_id]";
 		}
-		
+		$result = mysqli_query($conn, $query)
+		or die(mysqli_error($conn));
 		while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			print "\n";
