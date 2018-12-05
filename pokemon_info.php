@@ -57,6 +57,7 @@ print $query3;
 <p>
 
 <?php
+$pmon_name = "";
 $result = mysqli_query($conn, $query)
 or die(mysqli_error($conn));
 
@@ -69,6 +70,7 @@ if(! mysqli_num_rows($result))
 }else{
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
+	$pmon_name = $row[name]
     print "\n";
 	print "'".$pmon."' was found in the database, with the following information:\n\n";
     print "Pokedex number: $row[pokemon_id]\nName: $row[name]\nType: $row[type1] $row[type2]\n";
@@ -104,7 +106,11 @@ or die(mysqli_error($conn));
 
 if(! mysqli_num_rows($result))
 {
-	print "There are no routes along which this pokemon can be captured!";
+	print "There are no routes along which $pmon_name can be captured!";
+}
+else
+{
+	print "There are routes along which $pmon_name can be captured!";
 }
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
