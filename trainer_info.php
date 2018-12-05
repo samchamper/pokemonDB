@@ -25,7 +25,7 @@ $traner_loc = mysqli_real_escape_string($conn, $traner_loc);
 // this is a small attempt to avoid SQL injection
 // better to use prepared statements
 
-$query = "SELECT trainer_id FROM trainer WHERE route LIKE 'traner_loc';";
+$query = "SELECT trainer_id FROM trainer WHERE route LIKE '$traner_loc';";
 ?>
 
 <p>
