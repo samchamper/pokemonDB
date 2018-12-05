@@ -67,7 +67,9 @@ if(! mysqli_num_rows($result))
 	$res_str = "There are no pokemon matching your query! ";
 	$res_str = $res_str."'".$pmon."' was not found in the database. Please try a different name/pokedex number!\n";
     print $res_str;
-}else{
+}
+else
+{
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   {
 	$pmon_name = $row[name];
@@ -118,6 +120,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
     print " $row[loc_name]";
   }
 
+  
 print "\n\n";
 $result = mysqli_query($conn, $query3)
 or die(mysqli_error($conn));
@@ -140,11 +143,10 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 	}
 	print ".";
 }
+
+
 }
-  
-  
-  
-}
+
 ?>
 
 
