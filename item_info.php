@@ -9,7 +9,7 @@ or die('Error connecting to MySQL server.');
 
 <html>
 <head>
-  <title>Pokemon Information Query</title>
+  <title>Item Information Query</title>
   </head>
   
   <body bgcolor="white">

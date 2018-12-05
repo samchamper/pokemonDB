@@ -9,7 +9,7 @@ or die('Error connecting to MySQL server.');
 
 <html>
 <head>
-  <title>Pokemon Type Query</title>
+  <title>Trainer Info Query</title>
   </head>
   
   <body bgcolor="white">
@@ -31,7 +31,7 @@ $query = "SELECT trainer_id FROM trainer WHERE route LIKE '$traner_loc';";
 ?>
 
 <p>
-The following initial querys was submitted to the pokemon database:
+The following initial queryies were submitted to the pokemon database:
 <p>
 <?php
 print $pre_query;
