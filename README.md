@@ -1,8 +1,7 @@
-# SQL DATABASE FOR A FICTIONAL POKÉMON GAME AND APPLICATIONS THEREUPON
-
+# SQL DATABASE FOR FIRST GENERATION POKÉMON
 
 ## Author: Samuel Champer
 
-A repository for the final project for CIS 451 - Database Processing.
+An SQL database for first generation pokemon, as well as a web page that conducts live querries of the database to answer some burning questions you might have about the relative merits of the pokemon in question.
 
-The project is hosted live and accessible at http://ix.cs.uoregon.edu/~schampe2/pokemonDB/index.html as of December 5, 2018.
+The project was previously hosted live at http://ix.cs.uoregon.edu/~schampe2/pokemonDB/index.html.
